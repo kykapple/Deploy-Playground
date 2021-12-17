@@ -1,13 +1,13 @@
 package com.playground.backend.post.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.playground.backend.post.domain.Post;
 import com.playground.backend.post.dto.PostRequest;
 import com.playground.backend.post.service.PostService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/posts")
 @RequiredArgsConstructor
@@ -24,9 +24,9 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> insertPost(@RequestBody PostRequest postRequest) {
-        Post post = this.postService.insertPost(postRequest.getContents());
-        return ResponseEntity.ok(post);
+    public ResponseEntity<Post> createPost(@RequestBody PostRequest postRequest) {
+        Post post = this.postService.createPost(postRequest.getContents());
+        return ResponseEntity.status(HttpStatus.CREATED).body(post);
     }
 }
 
