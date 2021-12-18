@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  client:
+    image: kykapple/playground-frontend:0.1
+    container_name: client
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+  server:
+    image: kykapple/playground-backend:0.1
+    container_name: server
+    expose:
+      - 8080
